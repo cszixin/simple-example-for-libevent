@@ -18,7 +18,9 @@ int main(int argc,char *argv[])
     hint.ai_socktype = SOCK_STREAM;
     if(argc!=2){
         perror("argc error\n");
+        return -1;
     }
+    printf("argv[1] is %s\n",argv[1]);
 
     res = getaddrinfo(argv[1], "8080", &hint, &result);
     if (res == -1)
