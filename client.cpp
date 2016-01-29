@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <iostream>
 using namespace std;
-int main()
+int main(int argc,char *argv[])
 {
     struct addrinfo hint, *result;
     int res, fd;
@@ -16,8 +16,11 @@ int main()
     memset(&hint, 0, sizeof(hint));
     hint.ai_family = AF_INET;
     hint.ai_socktype = SOCK_STREAM;
+    if(argc!=2){
+        perror("argc error\n");
+    }
 
-    res = getaddrinfo("127.0.0.1", "8080", &hint, &result);
+    res = getaddrinfo(argv[1], "8080", &hint, &result);
     if (res == -1)
         return -1;
 
